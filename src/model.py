@@ -95,7 +95,12 @@ class LLaVACUBModel(nn.Module):
 
         # Extract 196 patch tokens per image
         patch_tokens = self.extract_patch_tokens(pixel_values) # [B, 196, vision_dim]
-        visual_embeds = self.projector(patch_tokens)            # [B, 196, llm_dim]
+        
+        visual_embeds = self.projector(patch_tokens)
+        # [B, 196, llm_dim]
+
+        if torch.isnan(visual_embeds).any():
+            print("None Values encountered")
         num_patches = visual_embeds.size(1)
 
         prompt_embeds = self.llm.get_input_embeddings()(prompt_ids)
@@ -145,6 +150,8 @@ class LLaVACUBModel(nn.Module):
         B = pixel_values.size(0)
         patch_tokens = self.extract_patch_tokens(pixel_values)
         visual_embeds = self.projector(patch_tokens)
+        if torch.isnan(visual_embeds).any():
+            print("None values encountered")
         num_patches = visual_embeds.size(1)
 
         prompt = self.tokenizer([STEERING_PROMPT] * B, return_tensors="pt", add_special_tokens=False)
