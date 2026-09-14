@@ -3,7 +3,7 @@ import json
 from torch.utils.data import Dataset
 from PIL import Image
 
-from config import cub_root,STEERING_PROMPT
+from src.config import cub_root,STEERING_PROMPT
 
 def parse_raw_attribute(raw_attr):
     """

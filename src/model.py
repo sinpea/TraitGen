@@ -5,7 +5,7 @@ import open_clip
 from transformers import AutoTokenizer, AutoModelForCausalLM, get_cosine_schedule_with_warmup
 from peft import LoraConfig, get_peft_model, TaskType
 
-from config import LLM_ID,CLIP_ID,STEERING_PROMPT
+from src.config import LLM_ID,CLIP_ID,STEERING_PROMPT
 
 class LLaVAProjector(nn.Module):
     """2-Layer MLP projecting BioCLIP patch tokens into the LLM embedding space."""
