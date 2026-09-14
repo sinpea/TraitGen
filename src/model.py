@@ -128,7 +128,7 @@ class LLaVACUBModel(nn.Module):
         weights = torch.ones_like(shift_labels, dtype=torch.float)
         weights[shift_labels == -100] = 0.0
 
-        conclusion_ids = self.gpt2_tokenizer("Deduction:", add_special_tokens=False).input_ids
+        conclusion_ids = self.tokenizer("Deduction:", add_special_tokens=False).input_ids
         
         for b in range(B):
             tokens = shift_labels[b]
