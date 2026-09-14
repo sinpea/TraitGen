@@ -211,3 +211,7 @@ def train():
             print(f"💾 Checkpoint saved (Loss: {avg_loss:.4f}) -> {CKPT_PATH}\n")
 
     return model_raw, dataset
+
+
+if __name__ == "__main__":
+    model,dataset = train()
